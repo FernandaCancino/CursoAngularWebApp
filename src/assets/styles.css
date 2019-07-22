@@ -66,4 +66,11 @@
     padding: 12.5%;
     margin-top: 2%;
     border-radius: 8px; 
+} 
+
+.activado{
+    text-decoration: none;
+    background: #E03137;
+    border-bottom: 2px solid yellow !important;
 }
+

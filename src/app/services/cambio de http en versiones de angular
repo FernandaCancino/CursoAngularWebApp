@@ -1,0 +1,20 @@
+Hola chicos, el import ese ya no funciona, actualmente el import bueno es el :
+
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClient , HttpHeaders, HttpResponse } from '@angular/common/http';
+ Eso salía en la página de angular, actualmente por ejemplo para crear un objeto que antes se creaba como
+
+private _http:Http
+Ahora se crea como:
+
+private _http:HttpClient
+Es decir que HttpClient tiene incluido al anterior Http y además, por ejemplo:
+
+La sentencia:
+
+return (this._http.get(this.url));
+No necesita el mapeo ya que el método get retorna Observable<HttpResponse<string>>
+
+Espero haberles dado una mano, porque a mi también me pasó lo mismo y asi lo solucioné.
+
+Un saludo.

@@ -1,4 +1,4 @@
 export var GLOBAL = {
-    url: 'http://localhost/curso-angular-backend/index.php/'
-    ,header_color: 'blue'
+     url: 'http://localhost/apiPHP/index.php/'
+    ,header_color: '#E03137'
 }

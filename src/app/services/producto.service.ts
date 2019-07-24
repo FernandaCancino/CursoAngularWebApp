@@ -7,7 +7,7 @@ import { HttpClient , HttpHeaders, HttpResponse } from '@angular/common/http';
 //para poder utilizar el objeto map y mapear respuesta, conseguir objetos de la api, etc
 import 'rxjs/add/operator/map';
 //
-import { Observable } from 'rxjs/observable';
+//import { Observable } from 'rxjs/observable';
 import { Producto } from '../models/producto';
 import { GLOBAL } from './global';
 
@@ -55,19 +55,37 @@ export class ProductoServices{
         //return this._http.post(this.url+'productos', params,{headers});
     }
 
-    //funcion para subir imagenes a la bd
+    /*funcion para subir imagenes a la bd
+        'hazme una subida de archivos', como parametros de entrada le paso
+            -una url de tipo string
+            -parametros de peticion: un array de tipo string 
+            -parametro files (que son los ficheros que va a subir), es una array de objeto File de js
+    */
     makeFileRequest(url: string, params:Array<string>, files: Array<File>){
 
+        //devolvemos una promesa, a traves de una funcion callback se realiza un resolve, reject
         return new Promise((resolve, reject)=>{
+            //con esto simulamos un formulario normal
             var formData: any = new FormData();
+            //con esto dejamos disponible el objeto para realizar paticiones ajax
             var xhr = new XMLHttpRequest();
 
+            //para recorrer todos los ficheros que hay dentro del array de Files, creamos el bucle for
+            //asi vamos iterando y añadiendo ficheros al formulario que vamos a enviar
             for(var i = 0; i <files.length; i++){
+                /*AÑADIMOS
+                    -uploads[] = es el name del campo que recibimos en el backend
+                    -files[i] = recorre los ficheros, iterando y cojiendo el fichero correcto
+                    -files[i].name = recojemos el nombre del fichero
+                */ 
                 formData.append('uploads[]', files[i], files[i].name);
             }
 
+            //cuando la peticion ajax este preparada, realizamos una funcion anonima
             xhr.onreadystatechange = function(){
+                //como funcionan las peticiones ajax 
                 if(xhr.readyState == 4){
+                    //si el estatus de la peticion es 200...
                     if(xhr.status == 200){
                         resolve(JSON.parse(xhr.response));
                     }else{
@@ -75,9 +93,16 @@ export class ProductoServices{
                     }
                 }
             }
-
+            /*abrimos la peticion ajax, indicandole:   
+                -el metodo que utilizamos
+                -la url donde hacemos la peticion ajax
+                -le decimos true para que la lance            
+            */
             xhr.open("POST", url, true);
+            /*Enviamos la peticion ajax (el formulario) */
             xhr.send(formData);
+
+            /*Ahora ya tenemos el metodo preparado , y podemos utilizarlo en producto-add.component.ts */
         });
 
 

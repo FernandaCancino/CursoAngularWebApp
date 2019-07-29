@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient , HttpHeaders, HttpResponse } from '@angular/common/http';
 // import { HttpClient } from '@angular/common/http';
 //para poder utilizar el objeto map y mapear respuesta, conseguir objetos de la api, etc
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/map';
 //
 //import { Observable } from 'rxjs/observable';
 import { Producto } from '../models/producto';
@@ -25,6 +25,12 @@ export class ProductoServices{
         // return this._http.get(this.url+'productos').map(res => res.json());
         // return (this._http.get(this.url+'productos')).map(res => res.json());
         return (this._http.get(this.url+'productos'));
+    }
+
+    getProducto(id){
+        //realizamos una peticion ajax
+        return (this._http.get(this.url+'producto/'+id));
+        
     }
 
     addProducto(producto: Producto){
@@ -107,6 +113,9 @@ export class ProductoServices{
 
 
     }
+
+
+    
 
 
 }

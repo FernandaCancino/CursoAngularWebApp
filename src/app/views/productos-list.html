@@ -6,12 +6,29 @@
 </div>
 
 <div *ngIf="productos">
-    <ul>
-        <li *ngFor="let producto of productos">
-            <strong>{{producto.nombre}}</strong>
-            <p>$ {{producto.precio}} </p>
-        </li>
-    </ul>
+    <div class="row justify-content-md-center">
+        <div class="card text-center col-lg-3"  *ngFor="let producto of productos">
+            
+                <div *ngIf="producto.imagen" class="producto_imagen">
+                        <img src="http://localhost:8080/apiPHP/uploads/{{producto.imagen}}" >
+                </div>
+
+                <div *ngIf="!producto.imagen" >
+                    <div class="imagen_relleno"></div>
+                </div>
+
+                <div class="caption">
+                    <strong>{{producto.nombre}}</strong>
+                    <p>$ {{producto.precio}} </p>
+                    <p>
+                        <a [routerLink]="['/producto', producto.id]" id="btnListProducto" class="btn btn-sm btn-outline-dark"> Ver</a>
+                        <a [routerLink]="['/editar-producto', producto.id]" id="btnListProducto" class="btn btn-sm btn-info"> Editar</a>
+                        <a href="#" id="btnListProducto" class="btn btn-sm btn-danger"> Borrar</a>
+                    </p>
+                </div>
+            
+        </div>
+    </div>
 </div>
 
 

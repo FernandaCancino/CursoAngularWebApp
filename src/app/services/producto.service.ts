@@ -116,7 +116,21 @@ export class ProductoServices{
 
 
     
+    //para modificar un producto
+    editProducto(id, producto: Producto){
 
+        //convierte un objeto javascript a un string de  JSON
+        let json = JSON.stringify(producto);
+        //definimos el parametro json, y le pasamos el jsn en formato string creado anteriormente
+        let params = "json="+json;
+        //creamos una variable headers, hacemos una instancia del objeto Headers, que dentro tiene una configuracion json 
+        //con el content type, y le decimos que es de tipo application/x-www-form-urlencoded
+        let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'update-producto/'+id, params, {headers: headers});
+
+
+    }
 
 }
 

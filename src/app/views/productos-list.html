@@ -10,7 +10,8 @@
         <div class="card text-center col-lg-3"  *ngFor="let producto of productos">
             
                 <div *ngIf="producto.imagen" class="producto_imagen">
-                        <img src="http://localhost:8080/apiPHP/uploads/{{producto.imagen}}" >
+                        <!-- <img src="http://localhost:8080/apiPHP/uploads/{{producto.imagen}}" > -->
+                        <img src="http://localhost/apiPHP/uploads/{{producto.imagen}}" >
                 </div>
 
                 <div *ngIf="!producto.imagen" >

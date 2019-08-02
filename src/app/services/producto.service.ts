@@ -132,5 +132,9 @@ export class ProductoServices{
 
     }
 
+    deleteProducto(id){
+        return this._http.get(this.url+'delete-producto/'+id);
+    }
+
 }
 
